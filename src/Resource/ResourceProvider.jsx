@@ -1,20 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useStateValue } from '../StateManager'
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core'
 
-const ResourcePicker = () => {
+const ResourceProvider = () => {
   const [{ resource }, dispatch] = useStateValue()
   const { name: resourceName, page } = resource
-
-  const [newResourceName, setNewResourceName] = useState(resourceName);
-
-  const updateResourceName = () => {
-    dispatch({
-      type: 'setResourceName',
-      payload: newResourceName
-    })
-  }
 
   const getData = async () => {
     dispatch({
@@ -51,20 +40,7 @@ const ResourcePicker = () => {
     getData();
   }, [resourceName, page])
 
-  return (
-    <div css={css`margin-bottom: 20px;`}>
-      <input
-        type="text"
-        value={newResourceName}
-        onChange={e => setNewResourceName(e.target.value)}
-        onBlur={() => {
-          newResourceName !== resourceName
-            && updateResourceName()
-        }
-        }
-      />
-    </div>
-  )
+  return null
 }
 
-export default ResourcePicker 
+export default ResourceProvider

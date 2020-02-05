@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { notificationReducer, notificationDefault } from './Common/ErrorInfo/notification.reducer'
-import { resourceReducer, resourceDefault } from './ResourcePicker/resource.reducer'
+import { resourceReducer, resourceDefault } from './Resource/resource.reducer'
 import { playerDefault, playerReducer } from './Common/TopBar/player.reducer'
 import { listDefault, listReducer } from './FighterList/list.reducer'
 
