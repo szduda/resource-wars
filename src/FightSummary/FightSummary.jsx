@@ -6,45 +6,11 @@ import { Button } from 'react-bootstrap'
 import TopBar from '../Common/TopBar'
 import { ListItem } from '../FighterList/FighterListItem'
 import { Name, Power } from '../FighterList/Fighter'
+import useRandomFight, { FightResult } from './useRandomFight'
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
-///////////////// controller
-
-const randomSort = () => Math.round(Math.random()) * 2 - 1
-
-const getFightResult = (allyPower, enemyPower) => {
-  let result = 'fail'
-  if (allyPower === enemyPower)
-    result = 'draw'
-
-  if (allyPower > enemyPower)
-    result = 'win'
-
-  return result
-}
-
-const findEnemy = (items, allyName, attribute) => {
-  const enemy = items
-    .sort(randomSort)
-    .find(x => x.name !== allyName)
-
-  if (!enemy) {
-    dispatch({
-      type: 'setNotification',
-      payload: 'There is no one to fight with.'
-    })
-    return <Redirect to="/" />
-  } else return {
-    name: enemy.name,
-    power: enemy[attribute],
-    win: false
-  }
-}
-
-////////////////////////
-
-const FighterListItem = ({ fighter }) => {
+const FighterCard = ({ fighter }) => {
   const { name, power } = fighter
   return (
     <ListItem as='div'>
@@ -100,30 +66,20 @@ const FightSummary = () => {
 
   const fight = () => {
     setDraw(false)
-    ///////////////// 
-    // const {allyCard, enemyCard, allyResult} 
-    // = useRandomFight(items, attribute, ally)
-    /////////////////
-    const allyCard = {
-      name: ally.name,
-      power: ally[attribute],
-      win: false
-    }
-    const enemyCard = findEnemy(items, allyName, attribute)
-    const allyResult = getFightResult(
-      Number(allyCard.power),
-      Number(enemyCard.power)
-    )
-    ////////////
+    const { allyCard, enemyCard, allyResult }
+      = useRandomFight(items, attribute, ally)
+
+    if (allyResult === 'noEnemy')
+      return <Redirect to="/" />
 
     dispatch({
       type: 'registerFight',
       payload: allyResult
     })
 
-    setAllyCard({ ...allyCard, win: allyResult === 'win' })
-    setEnemyCard({ ...enemyCard, win: allyResult === 'fail' })
-    if (allyResult === 'draw') setDraw(true)
+    setAllyCard({ ...allyCard, win: allyResult === FightResult.WIN })
+    setEnemyCard({ ...enemyCard, win: allyResult === FightResult.FAIL })
+    if (allyResult === FightResult.DRAW) setDraw(true)
   }
 
   if (!enemyCard.name)
