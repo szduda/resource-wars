@@ -1,7 +1,7 @@
-export const FightResult {
-  DRAW = 'draw',
-  FAIL = 'fail',
-  WIN = 'win'
+export const FightResult = {
+  DRAW: 'draw',
+  FAIL: 'fail',
+  WIN: 'win'
 }
 
 const randomSort = () => Math.round(Math.random()) * 2 - 1

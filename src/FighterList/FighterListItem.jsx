@@ -31,6 +31,23 @@ export const ListItem = props => {
   )
 }
 
+const ListItemContentWrapper = props => (
+  <div css={css`
+  display: flex;
+  flex-basis: 180px;
+  flex-shrink: 0;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  margin-left: 20px;
+
+  > * {
+    flex-basis: 240px;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+  `} {...props} />
+)
+
 const FighterListItem = ({ fighter, click }) => {
   if (!fighter) return null
   const { name, power } = fighter
@@ -38,25 +55,10 @@ const FighterListItem = ({ fighter, click }) => {
   return (
     <ListItem>
       <Button onClick={click}>
-
-        <div css={css`
-        display: flex;
-        flex-basis: 180px;
-        flex-shrink: 0;
-        flex-grow: 1;
-        flex-wrap: wrap;
-        margin-left: 20px;
-
-        > * {
-          flex-basis: 240px;
-          flex-shrink: 0;
-          flex-grow: 0;
-        }
-        `}>
+        <ListItemContentWrapper>
           <Name>{name}</Name>
           <Power>{power}</Power>
-        </div>
-
+        </ListItemContentWrapper>
       </Button>
     </ListItem>
   )

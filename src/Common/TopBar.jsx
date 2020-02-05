@@ -17,21 +17,25 @@ const ResultNumber = ({ number, suffix }) => (
   </span>
 )
 
-const TopBar = ({ wins, fails }) => (
+const TopBarWrapper = props => (
   <div css={css`
-    position: sticky;
-    top: 0;
-    width: 100%;
-    background: #6c757d;
-    color: #fff;
-    height: 100%;
-    align-items: center;
-  `}>
-    <Wrapper>
-      <ResultNumber number={wins} suffix="wins" />
-      <ResultNumber number={fails} suffix="fails" />
-    </Wrapper>
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #6c757d;
+  color: #fff;
+  height: 100%;
+  align-items: center;
+`}>
+    <Wrapper {...props} />
   </div>
+)
+
+const TopBar = ({ wins, fails }) => (
+  <TopBarWrapper>
+    <ResultNumber number={wins} suffix="wins" />
+    <ResultNumber number={fails} suffix="fails" />
+  </TopBarWrapper >
 )
 
 export default TopBar

@@ -94,9 +94,9 @@ const FightSummary = () => {
           Fight summary
         </SectionHeader>
 
-        <FighterListItem fighter={allyCard} />
+        <FighterCard fighter={allyCard} />
         <VS />
-        <FighterListItem fighter={enemyCard} />
+        <FighterCard fighter={enemyCard} />
 
         <FightResultText />
 

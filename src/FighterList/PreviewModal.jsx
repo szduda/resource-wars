@@ -37,12 +37,8 @@ export const FighterPreviewModal = ({ fighter, attribute, fight, ...props }) => 
         <FighterCard {... { power, name }} />
       </Modal.Body>
 
-      <Modal.Footer css={css`
-      border:0;
-      justify-content: center;
-      `}>
-        <Link to="/fight"
-          id="RandomFightButton">
+      <Modal.Footer css={css`border:0; justify-content: center;`}>
+        <Link to="/fight" id="RandomFightButton">
           <Button variant="secondary">
             Fight random enemy
           </Button>
