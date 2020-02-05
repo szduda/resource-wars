@@ -5,8 +5,8 @@ import { PagedList } from '../Common/List'
 import PreviewModal from './PreviewModal'
 import FighterListItem from './FighterListItem'
 import ResourcePicker from '../ResourcePicker/ResourcePicker'
-import ErrorInfo from '../Common/ErrorInfo'
-import TopBar from '../Common/TopBar'
+import ErrorInfo from '../Common/ErrorInfo/ErrorInfo'
+import TopBar from '../Common/TopBar/TopBar'
 
 export default () => {
   const [{ notification, resource, list, player }, dispatch] = useStateValue();

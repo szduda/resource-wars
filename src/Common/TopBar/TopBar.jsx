@@ -1,7 +1,7 @@
 import React from 'react'
 /** @jsx jsx */
 import { jsx, css, } from '@emotion/core'
-import { Wrapper } from './Theme'
+import { Wrapper } from '../Theme'
 
 const ResultNumber = ({ number, suffix }) => (
   <span css={css`margin-right: 10px;`}>
