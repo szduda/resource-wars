@@ -1,39 +1,47 @@
 import { useEffect } from 'react'
-import { useStateValue } from '../StateManager'
+import {
+  useStateValue,
+  useNotificationActions,
+  useResourceActions
+} from '../StateManager/StateManager'
+
+export const DataState = {
+  LOADING: 'loading',
+  READY_TO_LOAD: 'readyToLoad',
+  END_OF_DATA: 'endOfData',
+  EMPTY: 'empty'
+}
+
+const requestUri = (resourceName, page) =>
+  `https://swapi.co/api/${resourceName}/?page=${page}`
 
 const ResourceProvider = () => {
   const [{ resource }, dispatch] = useStateValue()
+  const actions = {
+    ...useNotificationActions(dispatch),
+    ...useResourceActions(dispatch)
+  }
   const { name: resourceName, page } = resource
 
   const getData = async () => {
-    dispatch({
-      type: 'setDataState',
-      payload: 'loading'
-    })
-    try {
-      let response = await fetch(
-        `https://swapi.co/api/${resourceName}/?page=${page}`
-      )
-      response = await response.json()
-      dispatch({
-        type: 'loadResourcePage',
-        payload: {
-          items: response.results || [],
-          total: response.count || 0,
-        }
-      })
+    actions.setDataState(DataState.LOADING)
+    let response = null
 
-      const endOfData = Math.ceil(response.count / 10) <= page
-      dispatch({
-        type: 'setDataState',
-        payload: endOfData ? 'endOfData' : 'readyToLoad'
-      })
+    try {
+      response = await fetch(requestUri(resourceName, page))
+      response = await response.json()
     } catch (error) {
-      dispatch({
-        type: 'setNotification',
-        payload: 'Failed to load data :('
-      })
+      actions.setNotification('Failed to load data :(')
     }
+
+    actions.loadPage(response.results, response.count)
+
+    const endOfData = Math.ceil(response.count / 10) <= page
+    actions.setDataState(
+      endOfData
+        ? DataState.END_OF_DATA
+        : DataState.READY_TO_LOAD
+    )
   }
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import React from 'react'
 /** @jsx jsx */
 import { jsx, css, } from '@emotion/core'
-import { Wrapper } from '../Theme'
+import { Wrapper } from './Theme'
 
 const ResultNumber = ({ number, suffix }) => (
   <span css={css`margin-right: 10px;`}>
@@ -33,8 +33,14 @@ const TopBarWrapper = props => (
 
 const TopBar = ({ wins, fails }) => (
   <TopBarWrapper>
-    <ResultNumber number={wins} suffix="wins" />
-    <ResultNumber number={fails} suffix="fails" />
+    <ResultNumber
+      number={wins}
+      suffix={`win${wins !== 1 ? 's' : ''}`}
+    />
+    <ResultNumber
+      number={fails}
+      suffix={`fail${fails !== 1 ? 's' : ''}`}
+    />
   </TopBarWrapper >
 )
 

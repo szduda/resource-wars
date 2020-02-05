@@ -17,3 +17,10 @@ export const playerReducer = (state, action) => {
       return state;
   }
 }
+
+export const playerActions = {
+  registerFight: allyResult => ({
+    type: 'registerFight',
+    payload: allyResult
+  })
+}

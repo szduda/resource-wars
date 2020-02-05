@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
-import { useStateValue } from '../StateManager'
+import {
+  useStateValue,
+  usePlayerActions,
+  useNotificationActions
+} from '../StateManager/StateManager'
 import { AppWrapper, SectionHeader } from '../Common/Theme'
 import { Redirect } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
-import TopBar from '../Common/TopBar/TopBar'
+import TopBar from '../Common/TopBar'
 import { ListItem } from '../FighterList/FighterListItem'
 import { Name, Power } from '../FighterList/Fighter'
 import useRandomFight, { FightResult } from './useRandomFight'
@@ -42,6 +46,10 @@ const VS = () => (
 
 const FightSummary = () => {
   const [{ resource, list, player }, dispatch] = useStateValue()
+  const actions = {
+    ...usePlayerActions(dispatch),
+    ...useNotificationActions(dispatch)
+  }
   const { items, attribute } = resource
   const { previewId: allyName } = list
   const { wins, fails } = player
@@ -69,16 +77,15 @@ const FightSummary = () => {
     const { allyCard, enemyCard, allyResult }
       = useRandomFight(items, attribute, ally)
 
-    if (allyResult === 'noEnemy')
-      return <Redirect to="/" />
+    if (allyResult === FightResult.NO_ENEMY) {
+      actions.setNotification('There is no one to fight with.')
+      return
+    }
 
-    dispatch({
-      type: 'registerFight',
-      payload: allyResult
-    })
+    actions.registerFight(allyResult)
 
-    setAllyCard({ ...allyCard, win: allyResult === FightResult.WIN })
-    setEnemyCard({ ...enemyCard, win: allyResult === FightResult.FAIL })
+    setAllyCard(allyCard)
+    setEnemyCard(enemyCard)
     if (allyResult === FightResult.DRAW) setDraw(true)
   }
 

@@ -2,6 +2,7 @@ import React from 'react'
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 import { Button } from 'react-bootstrap'
+import { DataState } from '../Resource/ResourceProvider'
 
 export const List = props => (
   <ul css={css`
@@ -16,10 +17,10 @@ export const List = props => (
     {...props} />
 )
 
-export const PagedList = ({ children, onLoadMore, dataState = 'empty' }) => {
-  const isLoading = dataState === 'loading'
-  const isEmpty = dataState === 'empty'
-  const endOfData = dataState === 'endOfData'
+export const PagedList = ({ children, onLoadMore, dataState = DataState.EMPTY }) => {
+  const isLoading = dataState === DataState.LOADING
+  const isEmpty = dataState === DataState.EMPTY
+  const endOfData = dataState === DataState.END_OF_DATA
 
   return isEmpty
     ? 'Nothing to display'

@@ -10,3 +10,10 @@ export const notificationReducer = (state, action) => {
       return state;
   }
 }
+
+export const notificationActions = {
+  setNotification: notification => ({
+    type: 'setNotification',
+    payload: notification
+  })
+}

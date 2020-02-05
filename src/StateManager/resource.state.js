@@ -49,3 +49,24 @@ export const resourceReducer = (state, action) => {
       return state;
   }
 }
+
+export const resourceActions = {
+  setDataState: dataState => ({
+    type: 'setDataState',
+    payload: dataState
+  }),
+  loadPage: (items, count) => ({
+    type: 'loadResourcePage',
+    payload: {
+      items: items || [],
+      total: count || 0,
+    }
+  }),
+  updateResourceName: newResourceName => ({
+    type: 'setResourceName',
+    payload: newResourceName
+  }),
+  setNextPage: () => ({
+    type: 'setNextPage'
+  })
+}

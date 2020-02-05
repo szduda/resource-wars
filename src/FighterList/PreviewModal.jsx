@@ -7,12 +7,15 @@ import { jsx, css } from '@emotion/core'
 
 export const FighterCard = ({ name, power }) => {
   return (
-    <div id={`fighter-card-${name}`} css={css`
+    <div
+      id={`fighter-card-${name}`}
+      css={css`
       display: flex;
       flex-direction: column;
       align-items: center;
     `}>
-      <div css={css`
+      <div
+        css={css`
         margin: 20px 0;
         display: flex;
         flex-direction: column;
@@ -32,12 +35,12 @@ export const FighterPreviewModal = ({ fighter, attribute, fight, ...props }) => 
 
   return (
     <Modal id={"FighterPreviewModal"} centered {...props}>
-      <Modal.Header closeButton css={css`border:0;`} />
+      <Modal.Header closeButton css={css`border: 0;`} />
       <Modal.Body>
         <FighterCard {... { power, name }} />
       </Modal.Body>
 
-      <Modal.Footer css={css`border:0; justify-content: center;`}>
+      <Modal.Footer css={css`border: 0; justify-content: center;`}>
         <Link to="/fight" id="RandomFightButton">
           <Button variant="secondary">
             Fight random enemy

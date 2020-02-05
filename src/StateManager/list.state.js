@@ -14,3 +14,10 @@ export const listReducer = (state, action) => {
       return state;
   }
 }
+
+export const listActions = {
+  setPreview: id => ({
+    type: 'setPreview',
+    payload: id
+  })
+}

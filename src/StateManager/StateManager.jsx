@@ -1,11 +1,37 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { notificationReducer, notificationDefault } from './Common/ErrorInfo/notification.reducer'
-import { resourceReducer, resourceDefault } from './Resource/resource.reducer'
-import { playerDefault, playerReducer } from './Common/TopBar/player.reducer'
-import { listDefault, listReducer } from './FighterList/list.reducer'
+import { useActions } from "./useActions";
+import {
+  notificationReducer,
+  notificationDefault,
+  notificationActions
+} from './notification.state'
+import {
+  resourceReducer,
+  resourceDefault,
+  resourceActions
+} from './resource.state'
+import {
+  playerDefault,
+  playerReducer,
+  playerActions
+} from './player.state'
+import {
+  listDefault,
+  listReducer,
+  listActions
+} from './list.state'
 
 export const StateContext = createContext();
 export const useStateValue = () => useContext(StateContext);
+
+export const useNotificationActions = dispatch =>
+  useActions(dispatch, notificationActions)
+export const useResourceActions = dispatch =>
+  useActions(dispatch, resourceActions)
+export const useListActions = dispatch =>
+  useActions(dispatch, listActions)
+export const usePlayerActions = dispatch =>
+  useActions(dispatch, playerActions)
 
 export const StateProvider = ({ reducer, initialState, children }) => (
   <StateContext.Provider value={useReducer(reducer, initialState)}>

@@ -1,19 +1,9 @@
 import React, { useState } from 'react'
-import { useStateValue } from '../StateManager'
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
-const ResourcePicker = () => {
-  const [{ resource }, dispatch] = useStateValue()
-  const { name: resourceName } = resource
+const ResourcePicker = ({ resourceName, onResourceSelect }) => {
   const [newResourceName, setNewResourceName] = useState(resourceName);
-
-  const updateResourceName = () => {
-    dispatch({
-      type: 'setResourceName',
-      payload: newResourceName
-    })
-  }
 
   return (
     <div css={css`margin-bottom: 20px;`}>
@@ -21,7 +11,7 @@ const ResourcePicker = () => {
         type="text"
         value={newResourceName}
         onChange={e => setNewResourceName(e.target.value)}
-        onBlur={() => newResourceName !== resourceName && updateResourceName()}
+        onBlur={() => newResourceName !== resourceName && onResourceSelect(newResourceName)}
       />
     </div>
   )
