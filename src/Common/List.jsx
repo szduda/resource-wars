@@ -1,16 +1,16 @@
 import React from 'react'
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-import { Button } from '@material-ui/core'
+import Button from '@material-ui/core/Button'
 import { DataState } from '../StateManager/definitions/resource.state'
 
 export const ListItem = props => {
   const Tag = props.as || 'li'
   return (
     <Tag css={css`
-   border-radius: 8px;
-   background: #fff;
    width: 100%;
+   margin: 0;
+   padding: 0;
    &:not(:last-of-type) {
      margin-bottom: 10px;
    }

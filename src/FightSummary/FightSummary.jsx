@@ -6,7 +6,7 @@ import {
 } from '../StateManager/StateManager'
 import { AppWrapper, SectionHeader } from '../Common/Theme'
 import { Redirect } from 'react-router-dom'
-import { Button } from '@material-ui/core'
+import Button from '@material-ui/core/Button'
 import TopBar from '../Common/TopBar'
 import { ListItem } from '../Common/List'
 import { Name, Power } from '../Common/Fighter'

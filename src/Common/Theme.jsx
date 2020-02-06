@@ -105,21 +105,14 @@ export const Wrapper = props => (
 )
 
 export const SectionHeader = props => (
-  <h1 css={css`margin-bottom: 20px;`} {...props} />
+  <h1 css={css`margin: 0 20px 20px 0;`} {...props} />
 )
 
 export const Row = props => (
   <div css={css`
   display: flex;
-  justify-content: space-between;
   width: 100%;
   align-items: center;
-
-  @media (min-width: 640px) {
-    justify-content: flex-start;
-    > * {
-      margin-right: 20px;
-    }
-  }
+  flex-wrap: wrap;
   `} {...props} />
 )

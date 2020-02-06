@@ -2,35 +2,16 @@
 import { jsx, css } from '@emotion/core'
 import { Name, Power } from '../Common/Fighter'
 import { ListItem } from '../Common/List'
-
-const Button = props => (
-  <button css={css`
-  padding: 10px 20px;
-  background: none;
-  border: none;
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  > * {
-    margin: 10px 0;
-  }
-  `} {...props} />
-)
+import Card from '@material-ui/core/Card'
 
 const ListItemContentWrapper = props => (
-  <div css={css`
+  <Card css={css`
+  padding: 20px 30px;
+  width: 100%;
   display: flex;
-  flex-basis: 180px;
-  flex-shrink: 0;
-  flex-grow: 1;
   flex-wrap: wrap;
-  margin-left: 20px;
-
   > * {
-    flex-basis: 240px;
-    flex-shrink: 0;
-    flex-grow: 0;
+    flex-basis: 180px;
   }
   `} {...props} />
 )
@@ -41,12 +22,12 @@ const FighterListItem = ({ fighter, click }) => {
 
   return (
     <ListItem>
-      <Button onClick={click}>
+      <button css={css`width: 100%; padding: 0;`} onClick={click}>
         <ListItemContentWrapper>
-          <Name>{name}</Name>
+          <Name css={css`flex-grow: 1;`}>{name}</Name>
           <Power>{power}</Power>
         </ListItemContentWrapper>
-      </Button>
+      </button>
     </ListItem>
   )
 }

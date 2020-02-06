@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Name, Power } from '../Common/Fighter'
 import { Modal } from 'react-bootstrap'
-import { Button } from '@material-ui/core'
+import Button from '@material-ui/core/Button'
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
@@ -28,6 +28,9 @@ export const FighterCard = ({ name, power }) => {
   )
 }
 
+const FightLink = React.forwardRef((props, ref) =>
+  <Link to="/fight" id="RandomFightButton" {...props} ref={ref} />)
+
 export const FighterPreviewModal = ({ fighter, fight, ...props }) => {
   if (!fighter) return null
   let fighterMemo = useMemo(() => fighter, [])
@@ -41,11 +44,9 @@ export const FighterPreviewModal = ({ fighter, fight, ...props }) => {
       </Modal.Body>
 
       <Modal.Footer css={css`border: 0; justify-content: center;`}>
-        <Link to="/fight" id="RandomFightButton">
-          <Button variant="contained" color="secondary">
-            Fight random enemy
+        <Button component={FightLink} variant="contained" color="secondary">
+          Fight random enemy
           </Button>
-        </Link>
       </Modal.Footer>
     </Modal>
   )
