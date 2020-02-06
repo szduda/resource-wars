@@ -17,7 +17,11 @@ export const List = props => (
     {...props} />
 )
 
-export const PagedList = ({ children, onLoadMore, dataState = DataState.EMPTY }) => {
+export const PagedList = ({
+  children,
+  onLoadMore,
+  dataState = DataState.EMPTY
+}) => {
   const isLoading = dataState === DataState.LOADING
   const isEmpty = dataState === DataState.EMPTY
   const endOfData = dataState === DataState.END_OF_DATA
@@ -30,9 +34,11 @@ export const PagedList = ({ children, onLoadMore, dataState = DataState.EMPTY })
           {children}
         </List>
 
-        <div css={css`
-        align-self: center;
-        margin-top: 20px;`}
+        <div
+          id="Pager"
+          css={css`
+          align-self: center;
+          margin-top: 20px;`}
         >
           {endOfData
             ? 'You have loaded all the data'
