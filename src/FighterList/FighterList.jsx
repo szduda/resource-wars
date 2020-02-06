@@ -13,6 +13,7 @@ import ResourcePicker from './Resource/ResourcePicker'
 import ErrorInfo from '../Common/ErrorInfo'
 import TopBar from '../Common/TopBar'
 import ResourceProvider from './Resource/ResourceProvider'
+import { Redirect } from 'react-router-dom'
 
 export default () => {
   const [{ notification, resource, list, player }, dispatch] = useStateValue();

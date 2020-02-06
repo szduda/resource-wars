@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Name, Power } from '../Common/Fighter'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
+import { Button } from '@material-ui/core'
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
@@ -41,7 +42,7 @@ export const FighterPreviewModal = ({ fighter, fight, ...props }) => {
 
       <Modal.Footer css={css`border: 0; justify-content: center;`}>
         <Link to="/fight" id="RandomFightButton">
-          <Button variant="secondary">
+          <Button variant="contained" color="secondary">
             Fight random enemy
           </Button>
         </Link>

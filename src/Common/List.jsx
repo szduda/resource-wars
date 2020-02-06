@@ -1,7 +1,7 @@
 import React from 'react'
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-import { Button } from 'react-bootstrap'
+import { Button } from '@material-ui/core'
 import { DataState } from '../StateManager/definitions/resource.state'
 
 export const ListItem = props => {
@@ -59,6 +59,8 @@ export const PagedList = ({
             : (
               <Button
                 id="LoadMoreButton"
+                variant="contained"
+                color="primary"
                 onClick={() => !isLoading && onLoadMore()}
               >
                 {isLoading ? 'Loading...' : 'Load more'}

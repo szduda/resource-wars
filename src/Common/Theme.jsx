@@ -49,6 +49,10 @@ const Styles = () => (
     button {
       text-align: inherit;
       font: inherit;
+      background: none;
+      border: none;
+      margin: 0;
+      padding: 0;
     }
 
     .modal-content {
@@ -91,9 +95,12 @@ export const AppWrapper = props => (
 
 export const Wrapper = props => (
   <div css={css`
+  width: 100%;
   max-width: 1080px; 
   padding: 20px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
   `} {...props} />
 )
 

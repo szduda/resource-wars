@@ -6,7 +6,7 @@ import {
 } from '../StateManager/StateManager'
 import { AppWrapper, SectionHeader } from '../Common/Theme'
 import { Redirect } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Button } from '@material-ui/core'
 import TopBar from '../Common/TopBar'
 import { ListItem } from '../Common/List'
 import { Name, Power } from '../Common/Fighter'
@@ -56,6 +56,7 @@ export const FightSummary = () => {
 
   const [enemyCard, setEnemyCard] = useState({})
   const [allyCard, setAllyCard] = useState({})
+  const [redirect, setRedirect] = useState(false)
   const [draw, setDraw] = useState(false)
 
   const ally = items
@@ -94,7 +95,8 @@ export const FightSummary = () => {
 
   return (
     <>
-      <TopBar {...{ wins, fails }} />
+      {redirect && <Redirect to='/' />}
+      <TopBar wins={wins} fails={fails} onBack={() => setRedirect(true)} />
       <AppWrapper>
 
         <SectionHeader>
@@ -107,7 +109,7 @@ export const FightSummary = () => {
 
         <FightResultText />
 
-        <Button onClick={fight} variant="secondary">
+        <Button onClick={fight} variant="contained" color="secondary">
           One more fight
         </Button>
 

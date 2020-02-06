@@ -1,0 +1,1 @@
+export const ArrowLeft = '../../public/assets/arrow-left.svg'

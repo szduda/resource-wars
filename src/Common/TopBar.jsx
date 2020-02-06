@@ -2,6 +2,7 @@ import React from 'react'
 /** @jsx jsx */
 import { jsx, css, } from '@emotion/core'
 import { Wrapper } from './Theme'
+import { ArrowLeft } from './assets'
 
 const ResultNumber = ({ number, suffix }) => (
   <span css={css`margin-right: 10px;`}>
@@ -21,26 +22,45 @@ const TopBarWrapper = props => (
   <div css={css`
   position: sticky;
   top: 0;
-  width: 100%;
   background: #6c757d;
   color: #fff;
-  height: 100%;
-  align-items: center;
 `}>
     <Wrapper {...props} />
   </div>
 )
 
-const TopBar = ({ wins, fails }) => (
+const ButtonWrapper = props => (
+  <div css={css`
+  width: 24px;
+  height: 24px;
+  `} {...props}
+  />
+)
+
+const BackButton = ({ onClick }) => onClick
+  ? (
+    <ButtonWrapper>
+      <button
+        id="BackButton"
+        onClick={onClick}>
+        <img src={ArrowLeft} alt='back' />
+      </button>
+    </ButtonWrapper>
+  ) : <ButtonWrapper />
+
+const TopBar = ({ wins, fails, onBack }) => (
   <TopBarWrapper>
-    <ResultNumber
-      number={wins}
-      suffix={`win${wins !== 1 ? 's' : ''}`}
-    />
-    <ResultNumber
-      number={fails}
-      suffix={`fail${fails !== 1 ? 's' : ''}`}
-    />
+    <BackButton onClick={onBack} />
+    <div>
+      <ResultNumber
+        number={wins}
+        suffix={`win${wins !== 1 ? 's' : ''}`}
+      />
+      <ResultNumber
+        number={fails}
+        suffix={`fail${fails !== 1 ? 's' : ''}`}
+      />
+    </div>
   </TopBarWrapper >
 )
 
