@@ -1,8 +1,9 @@
-import React from "react"
-import { act } from "react-dom/test-utils"
-import { render, unmountComponentAtNode } from "react-dom"
-import { ResourceProvider, DataState, requestUri } from "./ResourceProvider"
-import { resourceDefault } from "../StateManager/resource.state"
+import React from 'react'
+import { act } from 'react-dom/test-utils'
+import { render, unmountComponentAtNode } from 'react-dom'
+import { ResourceProvider, requestUri } from './ResourceProvider'
+import { resourceDefault } from '../../StateManager/definitions/resource.state'
+import { DataState } from '../../StateManager/definitions/resource.state'
 
 let container, resourceName, page, actions, component, fakeResponse
 

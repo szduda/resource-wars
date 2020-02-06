@@ -1,8 +1,8 @@
-import React from "react"
-import { act } from "react-dom/test-utils"
-import { render, unmountComponentAtNode } from "react-dom"
-import { PagedList } from "./List"
-import { DataState } from "../model"
+import React from 'react'
+import { act } from 'react-dom/test-utils'
+import { render, unmountComponentAtNode } from 'react-dom'
+import { PagedList } from './List'
+import { DataState } from '../StateManager/definitions/resource.state'
 
 let container, component, getLoadMoreButton, getPager
 

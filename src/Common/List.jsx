@@ -2,7 +2,7 @@ import React from 'react'
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 import { Button } from 'react-bootstrap'
-import { DataState } from '../model'
+import { DataState } from '../StateManager/definitions/resource.state'
 
 export const ListItem = props => {
   const Tag = props.as || 'li'

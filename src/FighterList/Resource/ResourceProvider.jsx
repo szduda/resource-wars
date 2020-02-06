@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { DataState } from '../../model'
+import { DataState } from '../../StateManager/definitions/resource.state'
 
 export const requestUri = (resourceName, page) =>
   `https://swapi.co/api/${resourceName}/?page=${page}`
