@@ -27,11 +27,10 @@ export const FighterCard = ({ name, power }) => {
   )
 }
 
-export const FighterPreviewModal = ({ fighter, attribute, fight, ...props }) => {
+export const FighterPreviewModal = ({ fighter, fight, ...props }) => {
   if (!fighter) return null
   let fighterMemo = useMemo(() => fighter, [])
-  const { name } = fighterMemo
-  const power = fighterMemo[attribute]
+  const { name, power } = fighterMemo
 
   return (
     <Modal id={"FighterPreviewModal"} centered {...props}>

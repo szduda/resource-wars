@@ -4,8 +4,15 @@ import { DataState } from '../../StateManager/definitions/resource.state'
 export const requestUri = (resourceName, page) =>
   `https://swapi.co/api/${resourceName}/?page=${page}`
 
+export const parseFighters = (data, attribute) => data.map(
+  item => ({
+    name: item.name,
+    power: item[attribute]
+  })
+)
+
 export const ResourceProvider = ({
-  resourceName, page,
+  resourceName, attribute, page,
   setDataState, loadPage, setNotification, decrementPage
 }) => {
   const getData = async () => {
@@ -20,8 +27,10 @@ export const ResourceProvider = ({
       decrementPage()
     }
 
-    if (response)
-      loadPage(response.results, response.count)
+    if (response) {
+      const fighters = parseFighters(response.results, attribute)
+      loadPage(fighters, response.count)
+    }
 
     const endOfData = response
       && Math.ceil(response.count / 10) <= page

@@ -5,13 +5,14 @@ import { ResourceProvider, requestUri } from './ResourceProvider'
 import { resourceDefault } from '../../StateManager/definitions/resource.state'
 import { DataState } from '../../StateManager/definitions/resource.state'
 
-let container, resourceName, page, actions, component, fakeResponse
+let container, resourceName, page, actions, component, fakeResponse, attribute
 
 beforeEach(() => {
   container = document.createElement("div")
   document.body.appendChild(container)
   resourceName = resourceDefault.name
   page = resourceDefault.page
+  attribute = 'power'
 
   actions = {
     setDataState: jest.fn(),
@@ -35,7 +36,7 @@ beforeEach(() => {
 
   component = (
     <ResourceProvider
-      {...{ resourceName, page, ...actions }}
+      {...{ resourceName, page, attribute, ...actions }}
     />
   )
 })

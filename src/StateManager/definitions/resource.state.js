@@ -7,7 +7,6 @@ export const DataState = {
 
 export const resourceDefault = ({
   name: 'starships',
-  attribute: 'crew',
   items: [],
   page: 1,
   total: 0,

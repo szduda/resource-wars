@@ -18,30 +18,18 @@ const getFightResult = (allyPower, enemyPower) => {
   return result
 }
 
-const findEnemy = (items, allyName, attribute) => {
+const findEnemy = (items, allyName) => {
   let enemy = items
     .sort(randomSort)
     .find(x => x.name !== allyName)
 
   if (!enemy) return null
-  else return {
-    name: enemy.name,
-    power: enemy[attribute],
-    win: false
-  }
+  else return { ...enemy, win: false }
 }
 
-const useRandomFight = (items, attribute, ally) => {
-  const allyCard = {
-    name: ally.name,
-    power: ally[attribute],
-    win: false
-  }
-
-  const enemyCard = findEnemy(
-    items,
-    ally.name,
-    attribute)
+const useRandomFight = (items, ally) => {
+  const allyCard = { ...ally, win: false }
+  const enemyCard = findEnemy(items, ally.name)
 
   if (!enemyCard)
     return { allyCard, enemyCard, allyResult: null }

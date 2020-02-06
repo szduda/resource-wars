@@ -27,13 +27,14 @@ export default () => {
     name: resourceName,
     items,
     dataState,
-    attribute,
-    page
+    page,
+    available
   } = resource
+  const attribute = available[resourceName]
 
   return (
     <>
-      <ResourceProvider {...{ resourceName, page, ...actions }} />
+      <ResourceProvider {...{ resourceName, page, attribute, ...actions }} />
       <TopBar wins={player.wins} fails={player.fails} />
       <AppWrapper>
 
@@ -53,15 +54,12 @@ export default () => {
         </SectionHeader>
 
         <PagedList onLoadMore={actions.setNextPage} dataState={dataState}>
-          {items.map((item, index) => (
-            <FighterListItem {...{
-              fighter: {
-                name: item.name,
-                power: item[attribute]
-              },
-              click: () => actions.setPreview(item.name),
-              key: `listItem-${index}`
-            }} />
+          {items.map((fighter, index) => (
+            <FighterListItem
+              fighter={fighter}
+              click={() => actions.setPreview(fighter.name)}
+              key={`listItem-${index}`}
+            />
           ))}
         </PagedList>
 
@@ -69,7 +67,6 @@ export default () => {
 
       <PreviewModal
         fighter={items.find(f => f.name === previewId)}
-        attribute={attribute}
         show={!!previewId}
         onHide={() => actions.setPreview(null)}
       />

@@ -50,7 +50,7 @@ export const FightSummary = () => {
     ...usePlayerActions(dispatch),
     ...useNotificationActions(dispatch)
   }
-  const { items, attribute } = resource
+  const { items } = resource
   const { previewId: allyName } = list
   const { wins, fails } = player
 
@@ -75,7 +75,7 @@ export const FightSummary = () => {
   const fight = () => {
     setDraw(false)
     const { allyCard, enemyCard, allyResult }
-      = useRandomFight(items, attribute, ally)
+      = useRandomFight(items, ally)
 
     if (allyResult === FightResult.NO_ENEMY) {
       actions.setNotification('There is no one to fight with.')
