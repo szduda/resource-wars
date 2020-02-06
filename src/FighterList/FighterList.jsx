@@ -9,10 +9,10 @@ import { AppWrapper, SectionHeader, Row } from '../Common/Theme'
 import { PagedList } from '../Common/List'
 import PreviewModal from './PreviewModal'
 import FighterListItem from './FighterListItem'
-import ResourcePicker from '../Resource/ResourcePicker'
+import ResourcePicker from './Resource/ResourcePicker'
 import ErrorInfo from '../Common/ErrorInfo'
 import TopBar from '../Common/TopBar'
-import ResourceProvider from '../Resource/ResourceProvider'
+import ResourceProvider from './Resource/ResourceProvider'
 
 export default () => {
   const [{ notification, resource, list, player }, dispatch] = useStateValue();

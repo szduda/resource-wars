@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { Name, Power } from './Fighter'
+import { Name, Power } from '../Common/Fighter'
 import { Modal, Button } from 'react-bootstrap'
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'

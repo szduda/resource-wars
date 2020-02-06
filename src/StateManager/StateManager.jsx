@@ -4,22 +4,22 @@ import {
   notificationReducer,
   notificationDefault,
   notificationActions
-} from './notification.state'
+} from './definitions/notification.state'
 import {
   resourceReducer,
   resourceDefault,
   resourceActions
-} from './resource.state'
+} from './definitions/resource.state'
 import {
   playerDefault,
   playerReducer,
   playerActions
-} from './player.state'
+} from './definitions/player.state'
 import {
   listDefault,
   listReducer,
   listActions
-} from './list.state'
+} from './definitions/list.state'
 
 export const StateContext = createContext();
 export const useStateValue = () => useContext(StateContext);

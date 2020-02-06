@@ -2,11 +2,9 @@ import React from "react"
 import { act } from "react-dom/test-utils"
 import { render, unmountComponentAtNode } from "react-dom"
 import { PagedList } from "./List"
-import { DataState } from "../Resource/ResourceProvider"
+import { DataState } from "../model"
 
-let container, component,
-  onLoadMore, items, dataState,
-  getLoadMoreButton, getPager
+let container, component, getLoadMoreButton, getPager
 
 beforeEach(() => {
   container = document.createElement("div")

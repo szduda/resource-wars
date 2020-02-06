@@ -8,13 +8,13 @@ import { AppWrapper, SectionHeader } from '../Common/Theme'
 import { Redirect } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import TopBar from '../Common/TopBar'
-import { ListItem } from '../FighterList/FighterListItem'
-import { Name, Power } from '../FighterList/Fighter'
+import { ListItem } from '../Common/List'
+import { Name, Power } from '../Common/Fighter'
 import useRandomFight, { FightResult } from './useRandomFight'
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
-const FighterCard = ({ fighter }) => {
+export const FighterCard = ({ fighter }) => {
   const { name, power } = fighter
   return (
     <ListItem as='div'>
@@ -35,7 +35,7 @@ const FighterCard = ({ fighter }) => {
   )
 }
 
-const VS = () => (
+export const VS = () => (
   <span css={css`
   padding: 20px;
   align-self: center;
@@ -44,7 +44,7 @@ const VS = () => (
   </span>
 )
 
-const FightSummary = () => {
+export const FightSummary = () => {
   const [{ resource, list, player }, dispatch] = useStateValue()
   const actions = {
     ...usePlayerActions(dispatch),

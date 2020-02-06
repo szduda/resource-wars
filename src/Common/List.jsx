@@ -2,7 +2,21 @@ import React from 'react'
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 import { Button } from 'react-bootstrap'
-import { DataState } from '../Resource/ResourceProvider'
+import { DataState } from '../model'
+
+export const ListItem = props => {
+  const Tag = props.as || 'li'
+  return (
+    <Tag css={css`
+   border-radius: 8px;
+   background: #fff;
+   width: 100%;
+   &:not(:last-of-type) {
+     margin-bottom: 10px;
+   }
+   `} {...props} />
+  )
+}
 
 export const List = props => (
   <ul css={css`

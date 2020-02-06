@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-import { Name, Power } from './Fighter'
+import { Name, Power } from '../Common/Fighter'
+import { ListItem } from '../Common/List'
 
 const Button = props => (
   <button css={css`
@@ -16,20 +17,6 @@ const Button = props => (
   }
   `} {...props} />
 )
-
-export const ListItem = props => {
-  const Tag = props.as || 'li'
-  return (
-    <Tag css={css`
-   border-radius: 8px;
-   background: #fff;
-   width: 100%;
-   &:not(:last-of-type) {
-     margin-bottom: 10px;
-   }
-   `} {...props} />
-  )
-}
 
 const ListItemContentWrapper = props => (
   <div css={css`
