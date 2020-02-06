@@ -12,6 +12,7 @@ import FighterListItem from './FighterListItem'
 import ResourcePicker from '../Resource/ResourcePicker'
 import ErrorInfo from '../Common/ErrorInfo'
 import TopBar from '../Common/TopBar'
+import ResourceProvider from '../Resource/ResourceProvider'
 
 export default () => {
   const [{ notification, resource, list, player }, dispatch] = useStateValue();
@@ -20,11 +21,19 @@ export default () => {
     ...useListActions(dispatch),
     ...useResourceActions(dispatch)
   }
+
   const { previewId } = list
-  const { name: resourceName, items, dataState, attribute } = resource
+  const {
+    name: resourceName,
+    items,
+    dataState,
+    attribute,
+    page
+  } = resource
 
   return (
     <>
+      <ResourceProvider {...{ resourceName, page, ...actions }} />
       <TopBar wins={player.wins} fails={player.fails} />
       <AppWrapper>
 
