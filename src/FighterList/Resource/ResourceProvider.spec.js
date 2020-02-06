@@ -16,7 +16,8 @@ beforeEach(() => {
   actions = {
     setDataState: jest.fn(),
     loadPage: jest.fn(),
-    setNotification: jest.fn()
+    setNotification: jest.fn(),
+    decrementPage: jest.fn()
   }
 
   fakeResponse = {

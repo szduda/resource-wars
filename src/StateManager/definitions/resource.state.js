@@ -31,9 +31,15 @@ export const resourceReducer = (state, action) => {
         ]
       }
     case 'setNextPage':
+      const { length } = state.items
       return {
         ...state,
-        page: state.page + 1
+        page: length ? Math.ceil(length / 10) + 1 : 1
+      }
+    case 'decrementPage':
+      return {
+        ...state,
+        page: state.page > 0 ? state.page - 1 : 0
       }
     case 'setDataState':
       return {
@@ -75,5 +81,8 @@ export const resourceActions = {
   }),
   setNextPage: () => ({
     type: 'setNextPage'
+  }),
+  decrementPage: () => ({
+    type: 'decrementPage'
   })
 }

@@ -44,6 +44,7 @@ export default () => {
           <ResourcePicker
             resourceName={resourceName}
             onResourceSelect={actions.updateResourceName}
+            decrementPage={actions.decrementPage}
           />
         </Row>
 

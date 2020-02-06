@@ -6,7 +6,7 @@ export const requestUri = (resourceName, page) =>
 
 export const ResourceProvider = ({
   resourceName, page,
-  setDataState, loadPage, setNotification
+  setDataState, loadPage, setNotification, decrementPage
 }) => {
   const getData = async () => {
     setDataState(DataState.LOADING)
@@ -17,6 +17,7 @@ export const ResourceProvider = ({
       response = await response.json()
     } catch (error) {
       setNotification('Failed to load data :(')
+      decrementPage()
     }
 
     if (response)
@@ -31,7 +32,7 @@ export const ResourceProvider = ({
   }
 
   useEffect(() => {
-    getData();
+    resourceName && page && getData();
   }, [resourceName, page])
 
   return null
