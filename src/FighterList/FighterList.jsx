@@ -28,9 +28,9 @@ export default () => {
     items,
     dataState,
     page,
-    available
+    available: availableResources
   } = resource
-  const attribute = available[resourceName]
+  const attribute = availableResources[resourceName]
 
   return (
     <>
@@ -45,6 +45,7 @@ export default () => {
           <ResourcePicker
             resourceName={resourceName}
             onResourceSelect={actions.updateResourceName}
+            availableResources={availableResources}
             decrementPage={actions.decrementPage}
           />
         </Row>

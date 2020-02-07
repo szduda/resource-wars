@@ -8,32 +8,11 @@ import { AppWrapper, SectionHeader } from '../Common/Theme'
 import { Redirect } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import TopBar from '../Common/TopBar'
-import { ListItem } from '../Common/List'
 import { Name, Power } from '../Common/Fighter'
 import useRandomFight, { FightResult } from './useRandomFight'
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-
-export const FighterCard = ({ fighter }) => {
-  const { name, power } = fighter
-  return (
-    <ListItem as='div'>
-      <div css={css`
-        display: flex;
-        margin: 10px 0 10px 20px;
-        padding: 10px 20px;
-        flex-wrap: wrap;
-
-        > * {
-          flex-basis: 240px;
-        }
-        `}>
-        <Name>{name}</Name>
-        <Power>{power}</Power>
-      </div>
-    </ListItem>
-  )
-}
+import { FighterCard } from '../Common/Fighter'
 
 export const VS = () => (
   <span css={css`

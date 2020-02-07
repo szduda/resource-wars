@@ -24,6 +24,7 @@ const TopBarWrapper = props => (
   top: 0;
   background: #6c757d;
   color: #fff;
+  z-index: 1;
 `}>
     <Wrapper {...props} />
   </div>
