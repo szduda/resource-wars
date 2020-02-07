@@ -15,6 +15,10 @@ const Styles = () => (
       font-weight: 400;
     }
 
+    a:hover {
+      color: #fff;
+    }
+
     p {
       margin: 0 0 20px 0;
 

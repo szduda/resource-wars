@@ -45,8 +45,8 @@ afterEach(() => {
   global.fetch.mockRestore()
 
   unmountComponentAtNode(container)
-  container.remove();
-  container = null;
+  container.remove()
+  container = null
 })
 
 describe("ResourceProvider", () => {

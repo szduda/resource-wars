@@ -32,7 +32,7 @@ const useRandomFight = (items, ally) => {
   const enemyCard = findEnemy(items, ally.name)
 
   if (!enemyCard)
-    return { allyCard, enemyCard, allyResult: null }
+    return { allyCard, enemyCard, allyResult: FightResult.NO_ENEMY }
 
   const allyResult = enemyCard
     ? getFightResult(

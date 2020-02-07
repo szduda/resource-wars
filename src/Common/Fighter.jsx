@@ -15,6 +15,7 @@ export const Power = props => (
 )
 
 export const FighterCard = ({ fighter }) => {
+  if (!fighter) return null
   const { name, power } = fighter
   return (
     <FighterWrapper>

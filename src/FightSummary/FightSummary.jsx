@@ -8,7 +8,6 @@ import { AppWrapper, SectionHeader } from '../Common/Theme'
 import { Redirect } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import TopBar from '../Common/TopBar'
-import { Name, Power } from '../Common/Fighter'
 import useRandomFight, { FightResult } from './useRandomFight'
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
@@ -44,13 +43,16 @@ export const FightSummary = () => {
   if (!ally)
     return <Redirect to="/" />
 
-  const FightResultText = () => (
-    <span css={css`padding: 20px 0;`}>
-      {allyCard.win && 'You won!'}
-      {enemyCard.win && 'You lost!'}
-      {draw && 'Draw.'}
-    </span>
-  )
+  const FightResultText = () => {
+    if (!allyCard || !enemyCard) return null
+    return (
+      <span css={css`padding: 20px 0;`}>
+        {allyCard.win && 'You won!'}
+        {enemyCard.win && 'You lost!'}
+        {draw && 'Draw.'}
+      </span>
+    )
+  }
 
   const fight = () => {
     setDraw(false)
@@ -69,11 +71,11 @@ export const FightSummary = () => {
     if (allyResult === FightResult.DRAW) setDraw(true)
   }
 
-  if (!enemyCard.name)
+  if (enemyCard && !enemyCard.name)
     fight()
 
   return (
-    <>
+    <div id="FightSummary">
       {redirect && <Redirect to='/' />}
       <TopBar wins={wins} fails={fails} onBack={() => setRedirect(true)} />
       <AppWrapper>
@@ -88,12 +90,17 @@ export const FightSummary = () => {
 
         <FightResultText />
 
-        <Button onClick={fight} variant="contained" color="secondary">
+        <Button
+          id="OneMoreFightButton"
+          onClick={fight}
+          variant="contained"
+          color="secondary"
+        >
           One more fight
         </Button>
 
       </AppWrapper>
-    </>
+    </div>
   )
 }
 
