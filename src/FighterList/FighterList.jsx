@@ -13,6 +13,7 @@ import ResourcePicker from './Resource/ResourcePicker'
 import ErrorInfo from '../Common/ErrorInfo'
 import TopBar from '../Common/TopBar'
 import ResourceProvider from './Resource/ResourceProvider'
+import { DataState } from '../StateManager/definitions/resource.state'
 
 export default () => {
   const [{ notification, resource, list, player }, dispatch] = useStateValue();
@@ -46,7 +47,7 @@ export default () => {
             resourceName={resourceName}
             onResourceSelect={actions.updateResourceName}
             availableResources={availableResources}
-            decrementPage={actions.decrementPage}
+            loading={dataState === DataState.LOADING}
           />
         </Row>
 

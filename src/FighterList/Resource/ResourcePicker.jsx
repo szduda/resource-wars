@@ -3,18 +3,20 @@ import React, { useState } from 'react'
 import { jsx, css } from '@emotion/core'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
+import FormControl from '@material-ui/core/FormControl';
 
 const ResourcePicker = ({
   availableResources,
   resourceName,
-  onResourceSelect
+  onResourceSelect,
+  loading
 }) => {
   if (!availableResources) return null
 
   return (
-    <div css={css`margin-bottom: 20px;`}>
+    <FormControl disabled={loading}>
       <Select
-        css={css`min-width: 230px;`}
+        css={css`min-width: 230px; margin-bottom: 20px;`}
         id="ResourcePicker"
         value={resourceName}
         onChange={e => {
@@ -32,7 +34,7 @@ const ResourcePicker = ({
           </MenuItem>
         ))}
       </Select>
-    </div>
+    </FormControl>
   )
 }
 
