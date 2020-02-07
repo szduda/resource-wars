@@ -2,7 +2,7 @@ import React from 'react'
 /** @jsx jsx */
 import { jsx, css, } from '@emotion/core'
 import { Wrapper } from './Theme'
-import { ArrowLeft } from './assets'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const ResultNumber = ({ number, suffix }) => (
   <span css={css`margin-right: 10px;`}>
@@ -44,7 +44,7 @@ const BackButton = ({ onClick }) => onClick
       <button
         id="BackButton"
         onClick={onClick}>
-        <img src={ArrowLeft} alt='back' />
+        <ArrowBackIcon css={css`path { fill: #fff; }`} />
       </button>
     </ButtonWrapper>
   ) : <ButtonWrapper />
