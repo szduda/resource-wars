@@ -59,7 +59,45 @@ describe("PagedList", () => {
     expect(button.textContent).toMatch('Load more')
   })
 
-  // test("calls onLoadMore when button clicked")
-  // test("does not call onLoadMore if already loading")
-  // test("renders children")
+  test("calls onLoadMore", () => {
+    const onLoadMore = jest.fn()
+    component = (
+      <PagedList
+        dataState={DataState.READY_TO_LOAD}
+        onLoadMore={onLoadMore}
+      />
+    )
+    act(() => { render(component, container) })
+    const button = getLoadMoreButton()
+    expect(button).toBeTruthy()
+    act(() => button.click())
+    expect(onLoadMore).toHaveBeenCalledTimes(1)
+  })
+
+  test("does not call onLoadMore if already loading", () => {
+    const onLoadMore = jest.fn()
+    component = (
+      <PagedList
+        dataState={DataState.LOADING}
+        onLoadMore={onLoadMore}
+      />
+    )
+    act(() => { render(component, container) })
+    const button = getLoadMoreButton()
+    expect(button).toBeTruthy()
+    act(() => button.click())
+    expect(onLoadMore).toHaveBeenCalledTimes(0)
+  })
+
+  test("renders children", () => {
+    const fakeChildren = <div id="fakeChild">child</div>
+    component = (
+      <PagedList dataState={DataState.READY_TO_LOAD} >
+        {fakeChildren}
+      </PagedList>
+    )
+    act(() => { render(component, container) })
+    const child = document.getElementById("fakeChild")
+    expect(child).toBeTruthy()
+  })
 })
